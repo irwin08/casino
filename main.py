@@ -19,12 +19,24 @@ def main():
         elif ans == 'n':
             game.finished = True
             game.printState()
+            stopped = False
+            while not stopped:
 
-            if game.printDealerTotal() > 21:
-                print("Congratulations you win")
-                break
-            
-            
+                if game.getDealerTotal() > 21:
+                    print("Congratulations you win")
+                    stopped = True
+                elif game.getDealerTotal() > 17:
+                    stopped = true
+                    if game.getPlayerTotal() > game.getDealerTotal():
+                        print("Congratulations you win")
+                    elif game.getPlayerTotal() == game.getDealerTotal():
+                        print("Push")
+                    elif game.getPlayerTotal() < game.getDealerTotal():
+                        print("You lose")
+                elif game.getDealerTotal() < 17:
+                    game.hitDealer()
+                    game.printState()
+                    
             break
 
 if __name__ == "__main__":

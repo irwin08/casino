@@ -96,6 +96,23 @@ class Blackjack:
             else:
                 total += c.face
         return total
+
+    def getPlayerTotal(self):
+        total = 0
+        for c in self.playerHand:
+            if c.face >= 10:
+                total += 10
+            if c.face == 1:
+                if (total + 11) < 22:
+                    total += 11
+                else:
+                    total += 1
+            else:
+                total += c.face
+        return total
                 
     def hit(self):
         self.playerHand.append(self.mainDeck.draw())
+
+    def hitDealer(self):
+        self.dealerHand.append(self.mainDeck.draw())
